@@ -8,6 +8,6 @@ namespace Dominio.Interfaces
 {
     public interface IEmpleadoRepository : IGenericRepository<Empleado>
     {
-        
+        Task<IEnumerable<Empleado>> EmpleadosXCargo(string cargoConsulta);
     }
 }

@@ -43,6 +43,22 @@ namespace Api.Controllers
             var movimiento = await _unitOfWork.Insumos.GetByIdAsync(id);
             return _mapper.Map<InsumoDto>(movimiento);
         }
+        [HttpGet("Xprenda/{codigoPrenda}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<InsumoDto>>> GetInsumoPrenda(int codigoPrenda)
+        {
+            var movimiento = await _unitOfWork.Insumos.InsumosXPrenda(codigoPrenda);
+            return _mapper.Map<List<InsumoDto>>(movimiento);
+        }
+        [HttpGet("Xproveedor/{nitProveedor}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<InsumoDto>>> GetInsumoProveedor(int nitProveedor)
+        {
+            var movimiento = await _unitOfWork.Insumos.InsumosXProveedor(nitProveedor);
+            return _mapper.Map<List<InsumoDto>>(movimiento);
+        }
         
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]

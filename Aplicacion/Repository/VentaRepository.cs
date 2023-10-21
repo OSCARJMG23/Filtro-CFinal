@@ -32,7 +32,7 @@ namespace Aplicacion.Repository
                                 .ToListAsync();
             return (totalRegistros, registros);
         }
-        public async Task<IEnumerable<Venta>> VentaXEmpleado(int IdEmpleadoConsulta)
+        public async Task<IEnumerable<Venta>> VentaXEmpleado(double IdEmpleadoConsulta)
         {
             var venta = await _contex.Ventas
             .Where(t=>t.Empleado.IdEmpleado== IdEmpleadoConsulta)

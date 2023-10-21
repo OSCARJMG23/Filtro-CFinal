@@ -8,6 +8,6 @@ namespace Dominio.Interfaces
 {
     public interface IVentaRepository : IGenericRepository<Venta>
     {
-        
+        Task<IEnumerable<Venta>> VentaXEmpleado(double IdEmpleadoConsulta);
     }
 }

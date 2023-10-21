@@ -8,6 +8,7 @@ namespace Dominio.Interfaces
 {
     public interface IInsumoRepository : IGenericRepository<Insumo>
     {
-        
+        Task<IEnumerable<Insumo>> InsumosXPrenda(int codigoPrenda);
+        Task<IEnumerable<Insumo>> InsumosXProveedor(int nitProveedorConsulta);
     }
 }

@@ -8,6 +8,7 @@ namespace Dominio.Interfaces
 {
     public interface IOrdenRepository : IGenericRepository<Orden>
     {
-        
+        Task<IEnumerable<Orden>> OrdenesEnProceso();
+        Task<IEnumerable<Orden>> OrdenXCliente(int clienteConsulta);
     }
 }
