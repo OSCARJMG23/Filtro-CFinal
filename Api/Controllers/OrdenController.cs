@@ -47,10 +47,10 @@ namespace Api.Controllers
         [HttpGet("proceso")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<OrdenDto>>> GetOrdenProceso()
+        public async Task<ActionResult<IEnumerable<OrdenProcesoDto>>> GetOrdenProceso()
         {
             var movimiento = await _unitOfWork.Ordenes.OrdenesEnProceso();
-            return _mapper.Map<List<OrdenDto>>(movimiento);
+            return _mapper.Map<List<OrdenProcesoDto>>(movimiento);
         }
         [HttpGet("cliente/{idClienteconsulta}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

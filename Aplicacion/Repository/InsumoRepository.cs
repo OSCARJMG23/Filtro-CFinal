@@ -43,7 +43,7 @@ namespace Aplicacion.Repository
         public async Task<IEnumerable<Insumo>> InsumosXProveedor(int nitProveedorConsulta)
         {
             var insumo = await _contex.Insumos
-            .Where(t=>t.Proveedores.Any(t=>t.NitProveedor == nitProveedorConsulta))
+            .Where(t=>t.Proveedores.Any(t=>t.NitProveedor == nitProveedorConsulta && t.TipoPersona.Descripcion == "Juridica"))
             .ToListAsync();
 
             return insumo;

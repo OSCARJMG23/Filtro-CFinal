@@ -30,6 +30,17 @@ namespace Api.Profiles
             CreateMap<Inventario , InventarioDto>().ReverseMap();
             CreateMap<Municipio , MunicipioDto>().ReverseMap();
             CreateMap<Orden , OrdenDto>().ReverseMap();
+            CreateMap<Orden , OrdenProcesoDto>()
+            .ForMember(t=>t.IdEmpleadoFk, e => e.MapFrom(f => f.Empleado.Id))
+            .ForMember(t=>t.NombreEmpleado, e=> e.MapFrom(t=>t.Empleado.Nombre))
+            .ForMember(t=> t.IdClienteFk, e=> e.MapFrom(t=>t.Cliente.Id))
+            .ForMember(t=>t.NombreCliente, e=>e.MapFrom(t=>t.Cliente.Nombre))
+            .ForMember(t=> t.IdEstadoFk, e=>e.MapFrom(t=>t.Estado.Id))
+            .ForMember(t=>t.Estado, e=>e.MapFrom(t=>t.Estado.Descripcion))
+            .ReverseMap();
+
+
+
             CreateMap<Pais , PaisDto>().ReverseMap();
             CreateMap<Prenda , PrendaDto>().ReverseMap();
             CreateMap<Proveedor , ProveedorDto>().ReverseMap();

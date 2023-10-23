@@ -37,6 +37,9 @@ namespace Aplicacion.Repository
         {
             var orden = await _contex.Ordenes
             .Where(t=>t.Estado.Descripcion == "Proceso")
+            .Include(e=>e.Empleado)
+            .Include(e=>e.Cliente)
+            .Include(e=>e.Estado)
             .ToListAsync();
 
             return orden;
