@@ -37,6 +37,8 @@ namespace Aplicacion.Repository
         {
             var Empleado = await _contex.Empleados
             .Where(t=>t.Cargo.Descripcion == cargoConsulta)
+            .Include(t=>t.Cargo)
+            .Include(t=>t.Municipio)
             .ToListAsync();
 
             return Empleado;

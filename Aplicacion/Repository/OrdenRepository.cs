@@ -48,6 +48,11 @@ namespace Aplicacion.Repository
         {
             var orden = await _contex.Ordenes
             .Where(t=>t.Cliente.IdCliente == clienteConsulta)
+            .Include(t=>t.Cliente)
+            .ThenInclude(t=>t.Municipio)
+            .Include(t=>t.Estado)
+            .Include(t=>t.DetalleOrdenes)
+            .ThenInclude(t=>t.Prenda)
             .ToListAsync();
 
             return orden;

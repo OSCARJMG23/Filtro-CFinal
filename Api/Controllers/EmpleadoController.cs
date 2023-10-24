@@ -47,10 +47,10 @@ namespace Api.Controllers
         [HttpGet("cargo/{cargoConsulta}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<EmpleadoDto>>> GetEmpleadoPorCargo(string cargoConsulta)
+        public async Task<ActionResult<IEnumerable<EmpleadoXcargoDto>>> GetEmpleadoPorCargo(string cargoConsulta)
         {
             var detalle = await _unitOfWork.Empleados.EmpleadosXCargo(cargoConsulta);
-            return _mapper.Map<List<EmpleadoDto>>(detalle);
+            return _mapper.Map<List<EmpleadoXcargoDto>>(detalle);
         }
         
         

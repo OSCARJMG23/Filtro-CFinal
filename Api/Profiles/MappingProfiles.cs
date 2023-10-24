@@ -19,9 +19,20 @@ namespace Api.Profiles
             CreateMap<Color , ColorDto>().ReverseMap();
             CreateMap<Departamento , DepartamentoDto>().ReverseMap();
             CreateMap<DetalleOrden , DetalleOrdenDto>().ReverseMap();
-            CreateMap<DetalleOrden , DetalleOrdenDto>().ReverseMap();
+            CreateMap<DetalleOrden , DetalleOrdenConsultaDto>()
+            .ForMember(t=>t.NombrePrenda, e=>e.MapFrom(t=>t.Prenda.Nombre))
+            .ForMember(t=>t.CodPrenda, e=>e.MapFrom(t=>t.Prenda.IdPrenda))
+            .ForMember(t=>t.Cantidad,e=>e.MapFrom(t=>t.CantidadProducir))
+            .ForMember(t=>t.ValorCop, e=>e.MapFrom(t=>t.Prenda.ValorUnitCop))
+            .ForMember(t=>t.ValorUsd, e=>e.MapFrom(t=>t.Prenda.ValorUnitUsd));
             CreateMap<DetalleVenta , DetalleVentaDto>().ReverseMap();
             CreateMap<Empleado , EmpleadoDto>().ReverseMap();
+            CreateMap<Empleado , EmpleadoXcargoDto>()
+            .ForMember(t=>t.Cargo, e=> e.MapFrom(t=>t.Cargo.Descripcion))
+            .ForMember(t=>t.Municipio, e=>e.MapFrom(t=>t.Municipio.Nombre))
+            .ReverseMap();
+
+
             CreateMap<Empresa , EmpresaDto>().ReverseMap();
             CreateMap<Estado , EstadoDto>().ReverseMap();
             CreateMap<FormaPago , FormaPagoDto>().ReverseMap();
@@ -39,6 +50,11 @@ namespace Api.Profiles
             .ForMember(t=>t.Estado, e=>e.MapFrom(t=>t.Estado.Descripcion))
             .ReverseMap();
 
+            CreateMap<Orden , OrdenXclienteDto>()
+            .ForMember(t=> t.NombreCliente, e=> e.MapFrom(t=> t.Cliente.Nombre))
+            .ForMember(t=>t.Municipio, e=> e.MapFrom(t=> t.Cliente.Municipio.Nombre))
+            .ForMember(t=>t.Estado, e=>e.MapFrom(t=>t.Estado.Descripcion))
+            .ReverseMap();
 
 
             CreateMap<Pais , PaisDto>().ReverseMap();
