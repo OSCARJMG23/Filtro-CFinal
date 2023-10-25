@@ -47,10 +47,10 @@ namespace Api.Controllers
         [HttpGet("empleado/{idEmpleado}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<VentaDto>>> GetVentaEmpleado(int idVentaConsulta)
+        public async Task<ActionResult<IEnumerable<VentaXempleadoDto>>> GetVentaEmpleado(int idVentaConsulta)
         {
             var movimiento = await _unitOfWork.Ventas.VentaXEmpleado(idVentaConsulta);
-            return _mapper.Map<List<VentaDto>>(movimiento);
+            return _mapper.Map<List<VentaXempleadoDto>>(movimiento);
         }
         
         [HttpPost]

@@ -52,8 +52,7 @@ namespace Api.Controllers
             var detalle = await _unitOfWork.Empleados.EmpleadosXCargo(cargoConsulta);
             return _mapper.Map<List<EmpleadoXcargoDto>>(detalle);
         }
-        
-        
+                
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

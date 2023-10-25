@@ -36,6 +36,9 @@ namespace Aplicacion.Repository
         {
             var venta = await _contex.Ventas
             .Where(t=>t.IdEmpleadoFk == IdEmpleadoConsulta)
+            .Include(t=>t.Empleado)
+            .ThenInclude(t=>t.Ventas)
+            .ThenInclude(t=>t.DetalleVentas)
             .ToListAsync();
 
             return venta;

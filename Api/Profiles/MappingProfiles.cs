@@ -65,6 +65,13 @@ namespace Api.Profiles
             CreateMap<TipoProteccion , TipoProteccionDto>().ReverseMap();
             CreateMap<TipoPersona , TipoPersonaDto>().ReverseMap();
             CreateMap<Venta , VentaDto>().ReverseMap();
+            CreateMap<Venta , VentaXempleadoDto>()
+            .ForMember(t=>t.IdEmpleado, e=>e.MapFrom(t=>t.Empleado.Id))
+            .ForMember(t=>t.NombreEmpleado, e=> e.MapFrom(t=>t.Empleado.Nombre))
+            .ForMember(t=>t.NroFactura, e=>e.MapFrom(t=>t.Id))
+            .ForMember(t=>t.Fecha, e=>e.MapFrom(t=>t.Fecha))
+            /* .ForMember(t=>t.Total, e=>e.MapFrom(t=>t.)) */
+            .ReverseMap();
         }
     }
 }

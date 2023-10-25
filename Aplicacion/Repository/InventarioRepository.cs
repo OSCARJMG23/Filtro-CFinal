@@ -32,5 +32,25 @@ namespace Aplicacion.Repository
                                 .ToListAsync();
             return (totalRegistros, registros);
         }
+
+        public async Task<IEnumerable<object>> PrendaYtalla()
+        {
+            var prenda = await _contex.Inventarios
+            .Include(t=>t.Prenda)
+            .Include(t=>t.InventarioTallas)
+            .ThenInclude(t=>t.Talla)
+            .ToListAsync();
+
+            var respuesta = prenda.Select(e=> new {
+                IdInventario = e.CodInventario,
+                NombreProducto = e.Prenda.Nombre,
+                Tallas = e.InventarioTallas.Select(e=> new {
+                    Talla = e.Talla.Descripcion,
+                    /* Cantidad = e. */
+                })
+            });
+
+            return prenda;
+        }
     }
 }
